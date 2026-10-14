@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Nemesis Guard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,400..700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <img src="icons/icon48.png" width="26" height="26" alt="" />
+      <span class="name">Nemesis Guard</span>
+      <a id="site" class="ghost-link" target="_blank">Open site ↗</a>
+    </header>
+
+    <section id="page" class="card" aria-live="polite">
+      <p class="eyebrow">This page</p>
+      <div id="page-body" class="muted">Checking…</div>
+    </section>
+
+    <section class="card">
+      <label class="eyebrow" for="lens">Inspect anything</label>
+      <textarea id="lens" rows="3" placeholder="Paste a link, an SMS, a password, a token…" spellcheck="false"></textarea>
+      <div id="lens-result"></div>
+    </section>
+
+    <footer>Runs on your device. Nothing you paste is uploaded.</footer>
+    <script src="dist/popup.js"></script>
+  </body>
+</html>

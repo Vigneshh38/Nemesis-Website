@@ -19,6 +19,7 @@ const COLUMNS = [
       { href: "/arena", label: "Capture the Flag" },
       { href: "/arena#leaderboard", label: "Leaderboard" },
       { href: "/learn", label: "Phish or Legit" },
+      { href: "/nemesis-guard.zip", label: "Chrome extension", external: true },
     ],
   },
   {

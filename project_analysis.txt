@@ -1,0 +1,86 @@
+================================================================================
+NEMESIS: COMPLETE CODEBASE STATUS & COMPONENT AUDIT
+Generated: 2026-10-14
+================================================================================
+
+1. EXECUTIVE UPDATE: UI WORK HAS OFFICIALLY STARTED & EXPANDED
+--------------------------------------------------------------------------------
+Since the initial boilerplate analysis, significant UI and full-stack development
+has occurred across the project. 
+
+- UI Status: ACTIVE & SUBSTANTIALLY BUILT
+  * The starter template in `src/app/page.tsx` was replaced with the full Nemesis
+    Hero landing page, interactive Toolkit cards, Arena preview, Security Checkup,
+    and Scam Report sections.
+  * `src/app/layout.tsx` is now fully customized with ClerkProvider authentication,
+    Google Sans Flex/Code fonts, MotionProvider, SiteHeader, and SiteFooter.
+  * A full suite of UI component modules has been added in `src/components/`.
+
+
+2. DETAILED DIRECTORY & CODE INVENTORY
+--------------------------------------------------------------------------------
+A. Frontend UI & Components (`src/components/`):
+   - `home/`:
+       * hero.tsx: Hero section with dynamic typography & actions.
+       * checkup.tsx: Interactive 8-point security checkup checklist.
+   - `arena/`:
+       * leaderboard.tsx: Real-time top agents leaderboard with Suspense skeleton.
+   - `lens/`:
+       * lens.tsx: Security analysis lens workspace.
+       * breach-check.tsx: Pwned passwords breach query widget.
+       * risk-dial.tsx: Visual verdict risk dial.
+       * verdict-card.tsx: Color-coded verdict & vulnerability card.
+   - Core Layout & Design:
+       * site-header.tsx: Global navigation, auth buttons, mobile menu.
+       * site-footer.tsx: Footer with quick links & helpline references.
+       * theme-toggle.tsx: Light/dark mode toggle.
+       * ui.tsx: Reusable design system primitives (Button, Chip, Card).
+       * reveal.tsx & motion-provider.tsx: Framer Motion animation wrappers.
+       * tool-icon.tsx: Icon mapper for security tools.
+
+B. Full-Stack API Endpoints (`src/app/api/`):
+   - `/api/scan/headers`: Website security header scanning engine with rate limiting.
+   - `/api/arena/beacon`: Real-time player beacon telemetry.
+   - `/api/arena/gate`: Token gate validation for security challenges.
+   - `/api/arena/submit`: Flag validation & scorekeeper.
+   - `/api/reports`: Incident report submission handler.
+   - `/api/admin/reports/[id]`: Admin investigation management.
+
+C. Backend Engine & Services (`src/lib/`):
+   - Security Analyzers: `link.ts`, `jwt.ts`, `password.ts`, `message.ts`, `misc.ts`.
+   - Infrastructure: `db.ts` (MongoDB), `models.ts` (Mongoose), `auth.ts` (Clerk),
+     `emails.ts` (Resend), `services.ts` (Cloudinary).
+
+
+3. ESLINT / CODE AUDIT FINDINGS (4 ISSUES DETECTED)
+--------------------------------------------------------------------------------
+Running `npm run lint` flagged 4 specific code issues to address:
+
+1. `src/app/page.tsx` (Line 101):
+   - Issue: Unescaped apostrophe in JSX ("Tick what you've already done").
+   - Fix: Escape with `&apos;` (`you&apos;ve`).
+
+2. `src/components/home/checkup.tsx` (Line 71):
+   - Issue: Calling `setDone(...)` synchronously inside `useEffect` on mount.
+   - Rule: `react-hooks/set-state-in-effect`.
+
+3. `src/components/lens/breach-check.tsx` (Line 17):
+   - Issue: Calling `setState({ status: "idle" })` synchronously inside `useEffect`
+     on `[password]` change.
+   - Rule: `react-hooks/set-state-in-effect`.
+
+4. `src/components/site-header.tsx` (Line 69):
+   - Issue: Calling `setOpen(false)` synchronously inside `useEffect` on `[pathname]` change.
+   - Rule: `react-hooks/set-state-in-effect`.
+
+
+4. COMMENT AUDIT
+--------------------------------------------------------------------------------
+- All source files were checked for unneeded comments or debug instructions.
+- All existing comments serve purposeful security documentation:
+  * Deliberate vulnerability markers for CTF challenges (`src/lib/arena/flags.ts`).
+  * Privacy documentation (e.g., EXIF stripping in `src/lib/services.ts`).
+  * Rate-limiting explanations (`src/app/api/scan/headers/route.ts`).
+  * CSS design token role documentation (`src/app/globals.css`).
+- No extraneous or dead "TODO: remove" comments were found.
+================================================================================

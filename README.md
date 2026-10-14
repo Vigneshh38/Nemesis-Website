@@ -23,3 +23,16 @@ npm run dev
 ## Deploy (Vercel)
 
 Import the repo, add every variable from `.env.example` in Project Settings → Environment Variables, deploy. In MongoDB Atlas → Network Access, allow `0.0.0.0/0` (Vercel uses dynamic IPs).
+
+## Chrome extension — Nemesis Guard
+
+Lives in `extension/`. It reuses the website's analyzers and runs locally.
+
+- A badge on every tab: green ✓, amber ?, or red ! for the page you're on.
+- A warning banner on pages that look like phishing, with "Get me out of here".
+- Right-click any link → **Check this link with Nemesis**.
+- A popup with the Lens: paste a link, SMS, password, token or hash.
+
+Install: download `/nemesis-guard.zip` from the site (or use the `extension/` folder), unzip, open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**, and pick the folder.
+
+Rebuild after changing analyzers: `npm run build:extension`. Set the site address in `extension/src/config.ts` after deploying.
